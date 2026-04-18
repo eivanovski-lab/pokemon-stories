@@ -1,0 +1,588 @@
+/* === Pokemon Stories — Children's Website === */
+
+:root {
+    --cream: #FFFDF7;
+    --brown: #3C2A1A;
+    --orange: #E85D2F;
+    --purple: #7B4BC4;
+    --purple-light: #F3EAFB;
+    --gold: #F5C542;
+    --green: #4CAF50;
+    --blue: #42A5F5;
+    --red: #EF5350;
+    --shadow: rgba(60, 42, 26, 0.1);
+    --radius: 16px;
+    --radius-sm: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--brown);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* === HEADER === */
+
+.hero-header {
+    position: relative;
+    background: linear-gradient(135deg, var(--purple) 0%, #9B6DD7 40%, var(--orange) 100%);
+    padding: 60px 20px 50px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 140%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(255,255,255,0.08) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.logo-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: clamp(28px, 6vw, 48px);
+    color: white;
+    text-shadow: 2px 3px 6px rgba(0,0,0,0.2);
+    margin-bottom: 8px;
+}
+
+.logo-subtitle {
+    font-family: 'Comfortaa', cursive;
+    font-size: clamp(14px, 3vw, 20px);
+    color: rgba(255,255,255,0.9);
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.hero-tagline {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+}
+
+/* === NAVIGATION === */
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: white;
+    box-shadow: 0 2px 8px var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-link {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--brown);
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: all 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+    background: var(--purple-light);
+    color: var(--purple);
+}
+
+/* === MAIN === */
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: clamp(22px, 4vw, 32px);
+    color: var(--orange);
+    text-align: center;
+    margin: 40px 0 24px;
+}
+
+/* === HEROES PREVIEW === */
+
+.heroes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.hero-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 24px 16px;
+    text-align: center;
+    box-shadow: 0 4px 16px var(--shadow);
+    transition: transform 0.2s;
+}
+
+.hero-card:hover {
+    transform: translateY(-4px);
+}
+
+.hero-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    overflow: hidden;
+    border: 4px solid var(--purple-light);
+}
+
+.hero-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-card h3 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 20px;
+    color: var(--purple);
+    margin-bottom: 4px;
+}
+
+.hero-role {
+    font-size: 14px;
+    color: var(--orange);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.hero-pokemon {
+    font-size: 12px;
+    color: #888;
+}
+
+.hero-kristi { border-top: 4px solid var(--purple); }
+.hero-makster { border-top: 4px solid var(--green); }
+.hero-romus { border-top: 4px solid var(--red); }
+
+/* === EPISODES GRID === */
+
+.episodes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 60px;
+}
+
+.episode-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 16px var(--shadow);
+    text-decoration: none;
+    color: var(--brown);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.episode-card.available:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(123, 75, 196, 0.2);
+}
+
+.episode-card h3 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 13px;
+    padding: 10px 12px;
+    line-height: 1.3;
+}
+
+.episode-cover {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--purple-light), #E8F5E9);
+}
+
+.episode-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.episode-number {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: var(--orange);
+    color: white;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.episode-card.locked {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.episode-cover.placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+}
+
+.lock-icon {
+    font-size: 40px;
+    margin-bottom: 8px;
+}
+
+.coming-soon {
+    font-size: 12px;
+    color: var(--orange);
+    font-weight: 600;
+    padding: 0 12px 8px;
+}
+
+/* === EPISODE PAGE === */
+
+.episode-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.episode-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.episode-header h1 {
+    font-family: 'Comfortaa', cursive;
+    font-size: clamp(24px, 5vw, 36px);
+    color: var(--orange);
+}
+
+.episode-header .season-label {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.scene-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: 22px;
+    color: var(--orange);
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--purple-light);
+}
+
+.episode-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+.episode-text .dialogue {
+    padding-left: 16px;
+    border-left: 3px solid var(--purple-light);
+    margin: 8px 0;
+}
+
+.episode-text .thought {
+    font-style: italic;
+    color: #6B5B8A;
+    padding: 8px 16px;
+    margin: 12px 0;
+}
+
+.episode-text .poster-box {
+    background: #FFF8EE;
+    border: 2px solid #C4A46C;
+    border-radius: var(--radius-sm);
+    padding: 16px 24px;
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    margin: 16px auto;
+    max-width: 400px;
+}
+
+.episode-illustration {
+    width: 100%;
+    border-radius: var(--radius);
+    margin: 20px 0;
+    box-shadow: 0 4px 16px var(--shadow);
+}
+
+.lesson-box {
+    background: var(--purple-light);
+    border: 2px solid var(--purple);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    text-align: center;
+    margin: 40px auto;
+    max-width: 500px;
+}
+
+.lesson-box h3 {
+    font-family: 'Comfortaa', cursive;
+    color: var(--purple);
+    margin-bottom: 8px;
+}
+
+.lesson-box p {
+    font-style: italic;
+    font-size: 16px;
+}
+
+.episode-nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+    gap: 12px;
+}
+
+.episode-nav a {
+    font-family: 'Comfortaa', cursive;
+    font-size: 14px;
+    color: var(--purple);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background: var(--purple-light);
+    transition: all 0.2s;
+}
+
+.episode-nav a:hover {
+    background: var(--purple);
+    color: white;
+}
+
+/* === HEROES PAGE === */
+
+.hero-full-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px var(--shadow);
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.hero-full-avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 4px solid var(--purple-light);
+}
+
+.hero-full-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-full-info h2 {
+    font-family: 'Comfortaa', cursive;
+    color: var(--purple);
+    margin-bottom: 4px;
+}
+
+/* === GAMES PAGE === */
+
+.games-placeholder {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.games-placeholder .games-icon {
+    font-size: 80px;
+    margin-bottom: 16px;
+}
+
+.games-placeholder h2 {
+    font-family: 'Comfortaa', cursive;
+    color: var(--purple);
+    margin-bottom: 12px;
+}
+
+/* === FOOTER === */
+
+footer {
+    background: var(--brown);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 24px 20px;
+    font-size: 14px;
+}
+
+.footer-note {
+    font-size: 12px;
+    margin-top: 4px;
+    opacity: 0.5;
+}
+
+/* === RESPONSIVE === */
+
+@media (max-width: 768px) {
+    .hero-header {
+        padding: 40px 16px 36px;
+    }
+
+    .heroes-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+
+    .hero-avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .hero-card {
+        padding: 16px 8px;
+    }
+
+    .hero-card h3 {
+        font-size: 16px;
+    }
+
+    .episodes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .hero-full-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .episode-nav {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .heroes-grid {
+        grid-template-columns: 1fr;
+        max-width: 250px;
+        margin: 0 auto 40px;
+    }
+}
+
+/* === PRINT === */
+
+.print-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 13px;
+    color: var(--purple);
+    background: var(--purple-light);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    float: right;
+    margin-top: -40px;
+}
+
+.print-btn:hover {
+    background: var(--purple);
+    color: white;
+}
+
+@media print {
+    .hero-header, .main-nav, footer, .episode-nav, .print-btn {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+        font-size: 12pt;
+    }
+
+    .episode-page {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .episode-header h1 {
+        color: black;
+        font-size: 20pt;
+    }
+
+    .scene-title {
+        color: #333;
+        page-break-after: avoid;
+    }
+
+    .episode-illustration {
+        max-width: 80%;
+        margin: 12px auto;
+        display: block;
+        page-break-inside: avoid;
+    }
+
+    .lesson-box {
+        border-color: #999;
+        page-break-inside: avoid;
+    }
+
+    .thought {
+        color: #555;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
+    }
+}
+
+/* iPad specific */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .episodes-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .heroes-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 700px;
+        margin: 0 auto 40px;
+    }
+}
