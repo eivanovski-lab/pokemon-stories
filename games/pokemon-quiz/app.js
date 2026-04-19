@@ -308,6 +308,142 @@ function getPokemonImageUrl(id) {
   return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + id + ".png";
 }
 
+/* ========== TYPE DATA (for "types" mode) ========== */
+
+/* POKEMON_TYPES[id] = [type1, type2?] — Gen 1 canonical types (modern typing, includes Gen 6 retcons: Fairy for Clefairy etc., Steel for Magnemite/Magneton) */
+var POKEMON_TYPES = {
+  1: ["grass", "poison"], 2: ["grass", "poison"], 3: ["grass", "poison"],
+  4: ["fire"], 5: ["fire"], 6: ["fire", "flying"],
+  7: ["water"], 8: ["water"], 9: ["water"],
+  10: ["bug"], 11: ["bug"], 12: ["bug", "flying"],
+  13: ["bug", "poison"], 14: ["bug", "poison"], 15: ["bug", "poison"],
+  16: ["normal", "flying"], 17: ["normal", "flying"], 18: ["normal", "flying"],
+  19: ["normal"], 20: ["normal"], 21: ["normal", "flying"], 22: ["normal", "flying"],
+  23: ["poison"], 24: ["poison"], 25: ["electric"], 26: ["electric"],
+  27: ["ground"], 28: ["ground"], 29: ["poison"], 30: ["poison"],
+  31: ["poison", "ground"], 32: ["poison"], 33: ["poison"], 34: ["poison", "ground"],
+  35: ["fairy"], 36: ["fairy"], 37: ["fire"], 38: ["fire"],
+  39: ["normal", "fairy"], 40: ["normal", "fairy"],
+  41: ["poison", "flying"], 42: ["poison", "flying"],
+  43: ["grass", "poison"], 44: ["grass", "poison"], 45: ["grass", "poison"],
+  46: ["bug", "grass"], 47: ["bug", "grass"], 48: ["bug", "poison"], 49: ["bug", "poison"],
+  50: ["ground"], 51: ["ground"], 52: ["normal"], 53: ["normal"],
+  54: ["water"], 55: ["water"], 56: ["fighting"], 57: ["fighting"],
+  58: ["fire"], 59: ["fire"], 60: ["water"], 61: ["water"], 62: ["water", "fighting"],
+  63: ["psychic"], 64: ["psychic"], 65: ["psychic"],
+  66: ["fighting"], 67: ["fighting"], 68: ["fighting"],
+  69: ["grass", "poison"], 70: ["grass", "poison"], 71: ["grass", "poison"],
+  72: ["water", "poison"], 73: ["water", "poison"],
+  74: ["rock", "ground"], 75: ["rock", "ground"], 76: ["rock", "ground"],
+  77: ["fire"], 78: ["fire"], 79: ["water", "psychic"], 80: ["water", "psychic"],
+  81: ["electric", "steel"], 82: ["electric", "steel"],
+  83: ["normal", "flying"], 84: ["normal", "flying"], 85: ["normal", "flying"],
+  86: ["water"], 87: ["water", "ice"], 88: ["poison"], 89: ["poison"],
+  90: ["water"], 91: ["water", "ice"],
+  92: ["ghost", "poison"], 93: ["ghost", "poison"], 94: ["ghost", "poison"],
+  95: ["rock", "ground"], 96: ["psychic"], 97: ["psychic"],
+  98: ["water"], 99: ["water"], 100: ["electric"], 101: ["electric"],
+  102: ["grass", "psychic"], 103: ["grass", "psychic"],
+  104: ["ground"], 105: ["ground"], 106: ["fighting"], 107: ["fighting"],
+  108: ["normal"], 109: ["poison"], 110: ["poison"],
+  111: ["ground", "rock"], 112: ["ground", "rock"],
+  113: ["normal"], 114: ["grass"], 115: ["normal"],
+  116: ["water"], 117: ["water"], 118: ["water"], 119: ["water"], 120: ["water"],
+  121: ["water", "psychic"], 122: ["psychic", "fairy"],
+  123: ["bug", "flying"], 124: ["ice", "psychic"],
+  125: ["electric"], 126: ["fire"], 127: ["bug"], 128: ["normal"],
+  129: ["water"], 130: ["water", "flying"], 131: ["water", "ice"],
+  132: ["normal"], 133: ["normal"], 134: ["water"], 135: ["electric"], 136: ["fire"],
+  137: ["normal"], 138: ["rock", "water"], 139: ["rock", "water"],
+  140: ["rock", "water"], 141: ["rock", "water"], 142: ["rock", "flying"],
+  143: ["normal"], 144: ["ice", "flying"], 145: ["electric", "flying"], 146: ["fire", "flying"],
+  147: ["dragon"], 148: ["dragon"], 149: ["dragon", "flying"],
+  150: ["psychic"], 151: ["psychic"]
+};
+
+/* Russian type names — plural (for "Выбери всех огненных") */
+var TYPE_RU_PLURAL = {
+  normal: "обычных", fire: "огненных", water: "водных", electric: "электрических",
+  grass: "травяных", ice: "ледяных", fighting: "боевых", poison: "ядовитых",
+  ground: "земляных", flying: "летающих", psychic: "психических", bug: "насекомых",
+  rock: "каменных", ghost: "призрачных", dragon: "драконьих", dark: "тёмных",
+  steel: "стальных", fairy: "волшебных"
+};
+
+/* Russian type names — masculine singular (for "Против огненного покемона") */
+var TYPE_RU_ADJ = {
+  normal: "обычный", fire: "огненный", water: "водный", electric: "электрический",
+  grass: "травяной", ice: "ледяной", fighting: "боевой", poison: "ядовитый",
+  ground: "земляной", flying: "летающий", psychic: "психический", bug: "насекомое",
+  rock: "каменный", ghost: "призрачный", dragon: "драконий", dark: "тёмный",
+  steel: "стальной", fairy: "волшебный"
+};
+
+/* Russian type names — noun (for type-chip labels) */
+var TYPE_RU_NOUN = {
+  normal: "Обычный", fire: "Огонь", water: "Вода", electric: "Электричество",
+  grass: "Трава", ice: "Лёд", fighting: "Боец", poison: "Яд",
+  ground: "Земля", flying: "Полёт", psychic: "Психика", bug: "Насекомое",
+  rock: "Камень", ghost: "Призрак", dragon: "Дракон", dark: "Тьма",
+  steel: "Сталь", fairy: "Волшебство"
+};
+
+var TYPE_EMOJI = {
+  normal: "⚪", fire: "🔥", water: "💧", electric: "⚡",
+  grass: "🌿", ice: "❄️", fighting: "👊", poison: "☠️",
+  ground: "🌍", flying: "🪽", psychic: "🔮", bug: "🐛",
+  rock: "🪨", ghost: "👻", dragon: "🐲", dark: "🌑",
+  steel: "⚙️", fairy: "✨"
+};
+
+var TYPE_COLOR = {
+  normal: "#A8A878", fire: "#F08030", water: "#6890F0", electric: "#F8D030",
+  grass: "#78C850", ice: "#98D8D8", fighting: "#C03028", poison: "#A040A0",
+  ground: "#E0C068", flying: "#A890F0", psychic: "#F85888", bug: "#A8B820",
+  rock: "#B8A038", ghost: "#705898", dragon: "#7038F8", dark: "#705848",
+  steel: "#B8B8D0", fairy: "#EE99AC"
+};
+
+/* Type effectiveness (Gen 6+ canonical). TYPE_CHART[attacker][defender] = multiplier (default 1). Only non-1 values stored. */
+var TYPE_CHART = {
+  normal:   { rock: 0.5, ghost: 0, steel: 0.5 },
+  fire:     { fire: 0.5, water: 0.5, grass: 2, ice: 2, bug: 2, rock: 0.5, dragon: 0.5, steel: 2 },
+  water:    { fire: 2, water: 0.5, grass: 0.5, ground: 2, rock: 2, dragon: 0.5 },
+  electric: { water: 2, electric: 0.5, grass: 0.5, ground: 0, flying: 2, dragon: 0.5 },
+  grass:    { fire: 0.5, water: 2, grass: 0.5, poison: 0.5, ground: 2, flying: 0.5, bug: 0.5, rock: 2, dragon: 0.5, steel: 0.5 },
+  ice:      { fire: 0.5, water: 0.5, grass: 2, ice: 0.5, ground: 2, flying: 2, dragon: 2, steel: 0.5 },
+  fighting: { normal: 2, ice: 2, poison: 0.5, flying: 0.5, psychic: 0.5, bug: 0.5, rock: 2, ghost: 0, dark: 2, steel: 2, fairy: 0.5 },
+  poison:   { grass: 2, poison: 0.5, ground: 0.5, rock: 0.5, ghost: 0.5, steel: 0, fairy: 2 },
+  ground:   { fire: 2, electric: 2, grass: 0.5, poison: 2, flying: 0, bug: 0.5, rock: 2, steel: 2 },
+  flying:   { electric: 0.5, grass: 2, fighting: 2, bug: 2, rock: 0.5, steel: 0.5 },
+  psychic:  { fighting: 2, poison: 2, psychic: 0.5, dark: 0, steel: 0.5 },
+  bug:      { fire: 0.5, grass: 2, fighting: 0.5, poison: 0.5, flying: 0.5, psychic: 2, ghost: 0.5, dark: 2, steel: 0.5, fairy: 0.5 },
+  rock:     { fire: 2, ice: 2, fighting: 0.5, ground: 0.5, flying: 2, bug: 2, steel: 0.5 },
+  ghost:    { normal: 0, psychic: 2, ghost: 2, dark: 0.5 },
+  dragon:   { dragon: 2, steel: 0.5, fairy: 0 },
+  dark:     { fighting: 0.5, psychic: 2, ghost: 2, dark: 0.5, fairy: 0.5 },
+  steel:    { fire: 0.5, water: 0.5, electric: 0.5, ice: 2, rock: 2, steel: 0.5, fairy: 2 },
+  fairy:    { fire: 0.5, fighting: 2, poison: 0.5, dragon: 2, dark: 2, steel: 0.5 }
+};
+
+function effectiveness(attackerType, defenderTypes) {
+  var mult = 1;
+  var row = TYPE_CHART[attackerType] || {};
+  for (var i = 0; i < defenderTypes.length; i++) {
+    var v = row[defenderTypes[i]];
+    mult *= (typeof v === "number") ? v : 1;
+  }
+  return mult;
+}
+
+/* Entries: { id, en, ru, types:[...] } — joins POKEMON_GEN1 with POKEMON_TYPES for convenience */
+function buildTypedPool() {
+  return POKEMON_GEN1.map(function(p) {
+    return { id: p.id, en: p.en, ru: p.ru, types: POKEMON_TYPES[p.id] || [] };
+  }).filter(function(p) { return p.types.length > 0; });
+}
+var POKEMON_TYPED = buildTypedPool();
+
 /* ========== FIRESTORE LEADERBOARD ========== */
 
 async function fetchLeaderboard(mode) {
@@ -401,6 +537,7 @@ function getNumChoices() {
 function getPokemonPool() {
   if (difficulty === "easy") return POKEMON_EASY;
   if (difficulty === "gen1") return POKEMON_GEN1;
+  if (difficulty === "types") return POKEMON_GEN1;
   return POKEMON_ALL;
 }
 
@@ -553,9 +690,437 @@ function startGame() {
   answered = false;
   gameStartTime = Date.now();
   gameElapsedSec = 0;
-  questions = generateQuestions();
-  showScreen("screen-quiz");
-  renderQuestion();
+  if (difficulty === "types") {
+    questions = generateTypesQuestions();
+    showScreen("screen-types");
+    renderTypesQuestion();
+  } else {
+    questions = generateQuestions();
+    showScreen("screen-quiz");
+    renderQuestion();
+  }
+}
+
+/* ========== TYPES MODE: GENERATION ========== */
+
+/* Available types in Gen 1 pool (after retcons: 17 types, no Dark) */
+function gen1AvailableTypes() {
+  var seen = {};
+  POKEMON_TYPED.forEach(function(p) {
+    p.types.forEach(function(t) { seen[t] = true; });
+  });
+  return Object.keys(seen);
+}
+
+function monoTypePool() {
+  return POKEMON_TYPED.filter(function(p) { return p.types.length === 1; });
+}
+
+function pokemonHasType(p, type) {
+  return p.types.indexOf(type) !== -1;
+}
+
+function pokemonHasAnyType(p, types) {
+  for (var i = 0; i < types.length; i++) {
+    if (p.types.indexOf(types[i]) !== -1) return true;
+  }
+  return false;
+}
+
+/* Pick N random elements (non-repeating) */
+function pickN(arr, n) {
+  return shuffle(arr).slice(0, n);
+}
+
+/* ---- Bucket A: FILTER (6 tiles, multi-select) ---- */
+function makeFilterQuestion(subtype) {
+  /* subtype: "positive" | "negative" | "compound" */
+  var availableTypes = gen1AvailableTypes();
+  var tries = 0;
+  while (tries++ < 40) {
+    var q;
+    if (subtype === "positive") {
+      var t = pickN(availableTypes, 1)[0];
+      q = {
+        bucket: "filter",
+        predicate: function(p) { return pokemonHasType(p, t); },
+        questionText: "Выбери всех <b>" + TYPE_RU_PLURAL[t] + "</b> покемонов",
+        answerExplain: "<b>" + TYPE_EMOJI[t] + " " + TYPE_RU_NOUN[t] + "</b>",
+        types: [t], mode: "positive"
+      };
+    } else if (subtype === "negative") {
+      var t2 = pickN(availableTypes, 1)[0];
+      q = {
+        bucket: "filter",
+        predicate: function(p) { return !pokemonHasType(p, t2); },
+        questionText: "Выбери всех, кто <b>НЕ " + TYPE_RU_PLURAL[t2] + "</b>",
+        answerExplain: "НЕ <b>" + TYPE_EMOJI[t2] + " " + TYPE_RU_NOUN[t2] + "</b>",
+        types: [t2], mode: "negative"
+      };
+    } else {
+      var tt = pickN(availableTypes, 2);
+      q = {
+        bucket: "filter",
+        predicate: function(p) { return !pokemonHasAnyType(p, tt); },
+        questionText: "Выбери всех, кто <b>НЕ " + TYPE_RU_PLURAL[tt[0]] + "</b> и <b>НЕ " + TYPE_RU_PLURAL[tt[1]] + "</b>",
+        answerExplain: "НЕ <b>" + TYPE_EMOJI[tt[0]] + " " + TYPE_RU_NOUN[tt[0]] + "</b> и НЕ <b>" + TYPE_EMOJI[tt[1]] + " " + TYPE_RU_NOUN[tt[1]] + "</b>",
+        types: tt, mode: "compound"
+      };
+    }
+
+    /* Build a 6-tile grid with 2-4 matches (so it's not trivial / not impossible) */
+    var matches = POKEMON_TYPED.filter(q.predicate);
+    var nonMatches = POKEMON_TYPED.filter(function(p) { return !q.predicate(p); });
+    if (matches.length < 2 || nonMatches.length < 2) continue;
+
+    var numMatch = 2 + Math.floor(Math.random() * 3); /* 2, 3 or 4 */
+    numMatch = Math.min(numMatch, matches.length, 4);
+    var numNon = 6 - numMatch;
+    if (numNon > nonMatches.length) continue;
+
+    var chosenMatches = pickN(matches, numMatch);
+    var chosenNon = pickN(nonMatches, numNon);
+    q.tiles = shuffle(chosenMatches.concat(chosenNon));
+    return q;
+  }
+  return null;
+}
+
+/* ---- Bucket B: MATCH TYPE (show 1, pick 1 of same type from 6) ---- */
+function makeMatchQuestion() {
+  var tries = 0;
+  while (tries++ < 40) {
+    var target = POKEMON_TYPED[Math.floor(Math.random() * POKEMON_TYPED.length)];
+    var targetTypes = target.types;
+    var sameTypePool = POKEMON_TYPED.filter(function(p) {
+      return p.id !== target.id && pokemonHasAnyType(p, targetTypes);
+    });
+    var differentPool = POKEMON_TYPED.filter(function(p) {
+      return p.id !== target.id && !pokemonHasAnyType(p, targetTypes);
+    });
+    if (sameTypePool.length < 1 || differentPool.length < 5) continue;
+
+    var correct = pickN(sameTypePool, 1)[0];
+    var wrong = pickN(differentPool, 5);
+    var choices = shuffle([correct].concat(wrong));
+
+    var sharedType = null;
+    for (var i = 0; i < targetTypes.length; i++) {
+      if (correct.types.indexOf(targetTypes[i]) !== -1) { sharedType = targetTypes[i]; break; }
+    }
+
+    return {
+      bucket: "match",
+      target: target,
+      correct: correct,
+      choices: choices,
+      questionText: "Какой покемон <b>того же типа</b>, что и " + target.ru + "?",
+      answerExplain: target.ru + " и " + correct.ru + " — оба <b>" + TYPE_EMOJI[sharedType] + " " + TYPE_RU_PLURAL[sharedType] + "</b>"
+    };
+  }
+  return null;
+}
+
+/* ---- Bucket C: ODD ONE OUT (4 tiles, 3 share a type, 1 doesn't) ---- */
+function makeOddQuestion() {
+  var availableTypes = gen1AvailableTypes();
+  var tries = 0;
+  while (tries++ < 40) {
+    var t = pickN(availableTypes, 1)[0];
+    var hasType = POKEMON_TYPED.filter(function(p) { return pokemonHasType(p, t); });
+    var noType = POKEMON_TYPED.filter(function(p) { return !pokemonHasType(p, t); });
+    if (hasType.length < 3 || noType.length < 1) continue;
+
+    var three = pickN(hasType, 3);
+    var odd = pickN(noType, 1)[0];
+    var tiles = shuffle(three.concat([odd]));
+    return {
+      bucket: "odd",
+      oddId: odd.id,
+      sharedType: t,
+      tiles: tiles,
+      questionText: "Кто здесь <b>лишний</b>?",
+      answerExplain: "Трое — <b>" + TYPE_EMOJI[t] + " " + TYPE_RU_PLURAL[t] + "</b>, а " + odd.ru + " — нет"
+    };
+  }
+  return null;
+}
+
+/* ---- Bucket D: BATTLE (show mono-type defender, pick best mono-type attacker from 4) ---- */
+function makeBattleQuestion() {
+  var mono = monoTypePool();
+  var tries = 0;
+  while (tries++ < 40) {
+    var defender = mono[Math.floor(Math.random() * mono.length)];
+    var defType = defender.types[0];
+
+    /* Find mono-type attackers that are super-effective (2x) vs defender */
+    var superEff = mono.filter(function(p) {
+      return p.id !== defender.id && effectiveness(p.types[0], [defType]) > 1;
+    });
+    /* And attackers that are neutral/weak (≤ 1x) */
+    var weak = mono.filter(function(p) {
+      return p.id !== defender.id && effectiveness(p.types[0], [defType]) <= 1;
+    });
+    if (superEff.length < 1 || weak.length < 3) continue;
+
+    var correct = pickN(superEff, 1)[0];
+    var wrong = pickN(weak, 3);
+    var choices = shuffle([correct].concat(wrong));
+    return {
+      bucket: "battle",
+      defender: defender,
+      correct: correct,
+      choices: choices,
+      questionText: "Кого лучше взять в бой против <b>" + defender.ru + "</b> (" + TYPE_EMOJI[defType] + " " + TYPE_RU_NOUN[defType] + ")?",
+      answerExplain: "<b>" + TYPE_EMOJI[correct.types[0]] + " " + TYPE_RU_NOUN[correct.types[0]] + "</b> сильнее <b>" + TYPE_EMOJI[defType] + " " + TYPE_RU_NOUN[defType] + "</b> — " + correct.ru + " одолеет"
+    };
+  }
+  return null;
+}
+
+function generateTypesQuestions() {
+  /* Fixed lesson plan: escalating difficulty, mix of all 4 buckets */
+  var plan = [
+    { bucket: "match", args: [] },
+    { bucket: "match", args: [] },
+    { bucket: "odd", args: [] },
+    { bucket: "filter", args: ["positive"] },
+    { bucket: "filter", args: ["positive"] },
+    { bucket: "battle", args: [] },
+    { bucket: "filter", args: ["negative"] },
+    { bucket: "battle", args: [] },
+    { bucket: "filter", args: ["compound"] },
+    { bucket: "battle", args: [] }
+  ];
+  var out = [];
+  for (var i = 0; i < plan.length; i++) {
+    var step = plan[i];
+    var q = null;
+    for (var retry = 0; retry < 5 && !q; retry++) {
+      if (step.bucket === "filter") q = makeFilterQuestion(step.args[0]);
+      else if (step.bucket === "match") q = makeMatchQuestion();
+      else if (step.bucket === "odd") q = makeOddQuestion();
+      else if (step.bucket === "battle") q = makeBattleQuestion();
+    }
+    if (!q) {
+      /* Ultra-fallback: positive filter is easiest to satisfy */
+      q = makeFilterQuestion("positive");
+    }
+    out.push(q);
+  }
+  return out;
+}
+
+/* ========== TYPES MODE: RENDER ========== */
+
+var typesSelected = {}; /* for filter bucket: { id: true } */
+
+function renderTypesQuestion() {
+  var q = questions[currentQuestion];
+  answered = false;
+  typesSelected = {};
+  clearAutoAdvance();
+
+  document.getElementById("types-counter").textContent = "Вопрос " + (currentQuestion + 1) + " / " + TOTAL_QUESTIONS;
+  document.getElementById("types-score").textContent = "Счёт: " + score;
+  document.getElementById("types-progress-fill").style.width = (((currentQuestion + 1) / TOTAL_QUESTIONS) * 100) + "%";
+
+  var cancelBtn = document.getElementById("types-btn-cancel");
+  if (cancelBtn) {
+    cancelBtn.classList.toggle("hidden", currentQuestion !== 0);
+  }
+
+  var target = document.getElementById("types-target");
+  var grid = document.getElementById("types-grid");
+  var qLabel = document.getElementById("types-question-label");
+  var submit = document.getElementById("types-btn-submit");
+  var next = document.getElementById("types-btn-next");
+  var feedback = document.getElementById("types-feedback");
+
+  feedback.classList.add("hidden");
+  submit.classList.add("hidden");
+  next.classList.add("hidden");
+
+  qLabel.innerHTML = q.questionText;
+
+  if (q.bucket === "filter") {
+    target.classList.add("hidden");
+    target.innerHTML = "";
+    grid.className = "types-grid grid-3x2";
+    grid.innerHTML = q.tiles.map(function(p, i) {
+      return '<button class="types-tile" data-id="' + p.id + '" data-index="' + i + '" onclick="toggleTypesTile(' + i + ')">' +
+        '<img src="' + getPokemonImageUrl(p.id) + '" class="types-tile-img" alt="' + p.ru + '" onerror="this.src=\'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + p.id + '.png\'">' +
+        '<span class="types-tile-name">' + p.ru + '</span>' +
+      '</button>';
+    }).join("");
+    submit.classList.remove("hidden");
+    submit.textContent = "Готово";
+  } else if (q.bucket === "match") {
+    target.classList.remove("hidden");
+    target.innerHTML =
+      '<div class="types-target-label">Подбери пару для:</div>' +
+      '<div class="types-target-card">' +
+        '<img src="' + getPokemonImageUrl(q.target.id) + '" class="types-target-img" alt="' + q.target.ru + '">' +
+        '<div class="types-target-name">' + q.target.ru + '</div>' +
+        renderTypeChips(q.target.types) +
+      '</div>';
+    grid.className = "types-grid grid-3x2";
+    grid.innerHTML = q.choices.map(function(p, i) {
+      return '<button class="types-tile" data-id="' + p.id + '" data-index="' + i + '" onclick="pickTypesSingle(' + i + ')">' +
+        '<img src="' + getPokemonImageUrl(p.id) + '" class="types-tile-img" alt="' + p.ru + '" onerror="this.src=\'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + p.id + '.png\'">' +
+        '<span class="types-tile-name">' + p.ru + '</span>' +
+      '</button>';
+    }).join("");
+  } else if (q.bucket === "odd") {
+    target.classList.add("hidden");
+    target.innerHTML = "";
+    grid.className = "types-grid grid-2x2";
+    grid.innerHTML = q.tiles.map(function(p, i) {
+      return '<button class="types-tile" data-id="' + p.id + '" data-index="' + i + '" onclick="pickTypesSingle(' + i + ')">' +
+        '<img src="' + getPokemonImageUrl(p.id) + '" class="types-tile-img" alt="' + p.ru + '" onerror="this.src=\'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + p.id + '.png\'">' +
+        '<span class="types-tile-name">' + p.ru + '</span>' +
+      '</button>';
+    }).join("");
+  } else if (q.bucket === "battle") {
+    target.classList.remove("hidden");
+    target.innerHTML =
+      '<div class="types-target-label">Против кого бой:</div>' +
+      '<div class="types-target-card">' +
+        '<img src="' + getPokemonImageUrl(q.defender.id) + '" class="types-target-img" alt="' + q.defender.ru + '">' +
+        '<div class="types-target-name">' + q.defender.ru + '</div>' +
+        renderTypeChips(q.defender.types) +
+      '</div>';
+    grid.className = "types-grid grid-2x2";
+    grid.innerHTML = q.choices.map(function(p, i) {
+      return '<button class="types-tile" data-id="' + p.id + '" data-index="' + i + '" onclick="pickTypesSingle(' + i + ')">' +
+        '<img src="' + getPokemonImageUrl(p.id) + '" class="types-tile-img" alt="' + p.ru + '" onerror="this.src=\'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + p.id + '.png\'">' +
+        '<span class="types-tile-name">' + p.ru + '</span>' +
+      '</button>';
+    }).join("");
+  }
+}
+
+function renderTypeChips(types) {
+  return '<div class="type-chips">' + types.map(function(t) {
+    return '<span class="type-chip" style="background:' + TYPE_COLOR[t] + '">' + TYPE_EMOJI[t] + " " + TYPE_RU_NOUN[t] + '</span>';
+  }).join("") + '</div>';
+}
+
+function toggleTypesTile(index) {
+  if (answered) return;
+  ensureAudio();
+  playClickSound();
+  var tile = document.querySelector('.types-tile[data-index="' + index + '"]');
+  if (!tile) return;
+  var id = parseInt(tile.getAttribute("data-id"), 10);
+  if (typesSelected[id]) {
+    delete typesSelected[id];
+    tile.classList.remove("selected");
+  } else {
+    typesSelected[id] = true;
+    tile.classList.add("selected");
+  }
+}
+
+function pickTypesSingle(index) {
+  if (answered) return;
+  answered = true;
+  ensureAudio();
+  var q = questions[currentQuestion];
+  var picked = q.choices ? q.choices[index] : q.tiles[index];
+  var correctId;
+  if (q.bucket === "match" || q.bucket === "battle") correctId = q.correct.id;
+  else if (q.bucket === "odd") correctId = q.oddId;
+  var isCorrect = picked.id === correctId;
+
+  var tiles = document.querySelectorAll(".types-tile");
+  tiles.forEach(function(t) {
+    var tid = parseInt(t.getAttribute("data-id"), 10);
+    t.classList.add("disabled");
+    if (tid === correctId) t.classList.add("correct");
+    if (tid === picked.id && !isCorrect) t.classList.add("wrong");
+  });
+
+  showTypesFeedback(isCorrect, q);
+  if (isCorrect) score++;
+  document.getElementById("types-score").textContent = "Счёт: " + score;
+  document.getElementById("types-btn-cancel").classList.add("hidden");
+
+  var next = document.getElementById("types-btn-next");
+  next.textContent = currentQuestion < TOTAL_QUESTIONS - 1 ? "Следующий вопрос" : "Показать результат";
+  next.classList.remove("hidden");
+}
+
+function submitTypesAnswer() {
+  if (answered) return;
+  answered = true;
+  ensureAudio();
+  playClickSound();
+  var q = questions[currentQuestion];
+
+  var correctIds = {};
+  q.tiles.forEach(function(p) {
+    if (q.predicate(p)) correctIds[p.id] = true;
+  });
+
+  /* Evaluate: binary — only full match counts */
+  var isCorrect = true;
+  q.tiles.forEach(function(p) {
+    var selected = !!typesSelected[p.id];
+    var shouldBe = !!correctIds[p.id];
+    if (selected !== shouldBe) isCorrect = false;
+  });
+
+  /* Mark tiles */
+  var tiles = document.querySelectorAll(".types-tile");
+  tiles.forEach(function(t) {
+    var tid = parseInt(t.getAttribute("data-id"), 10);
+    t.classList.add("disabled");
+    var shouldBe = !!correctIds[tid];
+    var selected = !!typesSelected[tid];
+    t.classList.remove("selected");
+    if (shouldBe) t.classList.add("correct");
+    if (selected && !shouldBe) t.classList.add("wrong");
+    if (!selected && shouldBe) t.classList.add("missed");
+  });
+
+  if (isCorrect) score++;
+  document.getElementById("types-score").textContent = "Счёт: " + score;
+
+  showTypesFeedback(isCorrect, q);
+  document.getElementById("types-btn-submit").classList.add("hidden");
+  document.getElementById("types-btn-cancel").classList.add("hidden");
+
+  var next = document.getElementById("types-btn-next");
+  next.textContent = currentQuestion < TOTAL_QUESTIONS - 1 ? "Следующий вопрос" : "Показать результат";
+  next.classList.remove("hidden");
+}
+
+function showTypesFeedback(isCorrect, q) {
+  var feedback = document.getElementById("types-feedback");
+  feedback.classList.remove("hidden", "correct", "wrong");
+  if (isCorrect) {
+    feedback.classList.add("correct");
+    feedback.innerHTML = "Правильно! 🎉 " + q.answerExplain;
+    playCorrectSound();
+  } else {
+    feedback.classList.add("wrong");
+    feedback.innerHTML = "Не совсем. Ответ: " + q.answerExplain;
+    playWrongSound();
+  }
+}
+
+function nextTypesQuestion() {
+  ensureAudio();
+  playClickSound();
+  clearAutoAdvance();
+  currentQuestion++;
+  if (currentQuestion >= TOTAL_QUESTIONS) {
+    showResultScreen();
+  } else {
+    renderTypesQuestion();
+  }
 }
 
 function renderQuestion() {
@@ -716,6 +1281,7 @@ function getResultMessage(s) {
 function getDiffLabel(diff) {
   if (diff === "easy") return "⭐ Простой";
   if (diff === "hard") return "🔥 Сложный";
+  if (diff === "types") return "🎯 Мастер типов";
   return "🏅 1 Поколение";
 }
 

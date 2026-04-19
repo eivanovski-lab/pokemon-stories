@@ -90,12 +90,43 @@
           <span class="diff-label">1 Поколение</span>
           <span class="diff-desc">151 покемон</span>
         </button>
+        <button class="diff-btn" data-diff="types" onclick="selectDifficulty('types')">
+          <span class="diff-icon">🎯</span>
+          <span class="diff-label">Мастер типов</span>
+          <span class="diff-desc">битвы и фильтры</span>
+        </button>
       </div>
       <button id="btn-start" class="btn btn-primary btn-large" onclick="startGame()">
         Начать игру
       </button>
       <button class="btn btn-secondary" onclick="showScreen('screen-records')">
         Таблица рекордов
+      </button>
+    </div>
+  </div>
+
+  <!-- TYPES SCREEN (bucket A/B/C/D — type quiz) -->
+  <div id="screen-types" class="screen">
+    <div class="quiz-header">
+      <div class="progress-info">
+        <span id="types-counter">Вопрос 1 / 10</span>
+        <span id="types-score">Счёт: 0</span>
+      </div>
+      <div class="progress-bar">
+        <div id="types-progress-fill" class="progress-fill" style="width: 10%"></div>
+      </div>
+    </div>
+    <div class="quiz-body">
+      <button id="types-btn-cancel" class="btn-cancel" onclick="cancelQuiz()">✕ Отмена</button>
+      <div id="types-target" class="types-target hidden"></div>
+      <h2 id="types-question-label" class="quiz-question"></h2>
+      <div id="types-grid" class="types-grid"></div>
+      <div id="types-feedback" class="feedback hidden"></div>
+      <button id="types-btn-submit" class="btn btn-primary hidden" onclick="submitTypesAnswer()">
+        Готово
+      </button>
+      <button id="types-btn-next" class="btn btn-primary hidden" onclick="nextTypesQuestion()">
+        Следующий вопрос
       </button>
     </div>
   </div>
@@ -157,6 +188,9 @@
         </button>
         <button class="records-tab" data-tab="gen1" onclick="switchRecordsTab('gen1')">
           🏅 Gen 1
+        </button>
+        <button class="records-tab" data-tab="types" onclick="switchRecordsTab('types')">
+          🎯 Типы
         </button>
       </div>
       <div id="records-table-wrapper">

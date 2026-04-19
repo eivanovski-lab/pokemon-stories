@@ -1,5 +1,5 @@
 /* Service Worker — Покемон Квиз PWA */
-const CACHE_NAME = "pokemon-quiz-v1";
+const CACHE_NAME = "pokemon-quiz-v2";
 
 const STATIC_ASSETS = [
   "./index.html",
