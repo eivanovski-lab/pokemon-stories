@@ -1322,3 +1322,137 @@ footer {
     .dex-modal-inner { padding: 16px; }
     .dex-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
 }
+
+/* === EVOLUTIONS PAGE === */
+.evo-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.evo-intro {
+    background: white;
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    box-shadow: 0 4px 16px var(--shadow);
+    margin-bottom: 28px;
+    font-size: 16px;
+    line-height: 1.55;
+}
+.evo-intro p { margin-bottom: 8px; }
+.evo-intro p:last-child { margin-bottom: 0; opacity: 0.8; font-size: 14px; }
+
+.evo-section {
+    margin-bottom: 42px;
+}
+.evo-section-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: 26px;
+    color: var(--purple);
+    margin-bottom: 6px;
+}
+.evo-section-intro {
+    font-size: 15px;
+    color: var(--brown);
+    opacity: 0.8;
+    margin-bottom: 18px;
+    line-height: 1.5;
+}
+
+.evo-families {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.evo-families-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+}
+
+.evo-family {
+    background: white;
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: 0 2px 10px var(--shadow);
+    border: 2px solid transparent;
+    transition: border-color 0.15s ease;
+}
+.evo-family:hover { border-color: var(--purple-light); }
+.evo-family-solo {
+    padding: 10px;
+}
+
+.evo-chain {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.evo-arrow {
+    font-size: 24px;
+    color: var(--purple);
+    font-weight: 800;
+}
+
+.evo-mini {
+    background: #f9f4e8;
+    border: 3px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 8px 6px;
+    min-width: 110px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+}
+.evo-mini:hover {
+    transform: translateY(-2px) scale(1.03);
+    border-color: var(--purple);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+.evo-mini img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+.evo-mini-name {
+    font-family: 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--brown);
+    line-height: 1.1;
+}
+.evo-mini-types {
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Owner-colored rings for heroes' pokemon */
+.evo-mini.evo-owner-kristi { border-color: var(--purple); background: #f7effb; }
+.evo-mini.evo-owner-makster { border-color: var(--green); background: #eff9ef; }
+.evo-mini.evo-owner-romus { border-color: var(--red); background: #fbefef; }
+
+/* Branching (Eevee) — vertical stack of destinations */
+.evo-branches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+@media (max-width: 520px) {
+    .evo-chain { gap: 6px; }
+    .evo-mini { min-width: 88px; padding: 6px 4px; }
+    .evo-mini img { width: 56px; height: 56px; }
+    .evo-mini-name { font-size: 11px; }
+    .evo-arrow { font-size: 18px; }
+    .evo-section-title { font-size: 22px; }
+    .evo-families-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+}

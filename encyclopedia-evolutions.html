@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Эволюции — Энциклопедия — Покемон-истории</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero-header" style="padding: 40px 20px;">
+        <div class="hero-content">
+            <h1 class="logo-title" style="font-size: clamp(28px, 6vw, 42px);">🥚 Эволюции</h1>
+            <p class="hero-tagline">Деревья развития всех покемонов Канто</p>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link">Главная</a>
+        <a href="heroes.html" class="nav-link">Герои</a>
+        <a href="games.html" class="nav-link">Игры</a>
+        <a href="encyclopedia.html" class="nav-link active">Энциклопедия</a>
+    </nav>
+
+    <main class="evo-page">
+        <p class="types-breadcrumb">
+            <a href="encyclopedia.html">Энциклопедия</a> &rsaquo; Эволюции
+        </p>
+
+        <section class="evo-intro">
+            <p>Большинство покемонов умеют <b>эволюционировать</b> — превращаться в следующую форму. Они становятся больше, сильнее, иногда меняют внешний вид до неузнаваемости. Какие-то меняются один раз, какие-то два. А некоторые не меняются никогда — они уже идеальны.</p>
+            <p>Нажми на любого покемона, чтобы прочитать о нём подробнее. 👇</p>
+        </section>
+
+        <div id="evo-content"></div>
+
+    </main>
+
+    <!-- Detail modal (shared with pokedex) -->
+    <div id="dex-modal" class="dex-modal">
+        <div class="dex-modal-inner">
+            <button class="dex-modal-close" onclick="closeDexDetail()">✕</button>
+            <div id="dex-modal-body"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Покемон-истории: Три тренера &copy; 2026</p>
+        <p class="footer-note">Для самостоятельного чтения &middot; 7–8 лет</p>
+    </footer>
+
+    <script src="pokedex.js"></script>
+    <script src="evolutions.js"></script>
+</body>
+</html>

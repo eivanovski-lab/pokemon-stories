@@ -473,18 +473,23 @@ function renderEntryContent(p, entry) {
 /* ========== INIT ========== */
 
 document.addEventListener("DOMContentLoaded", function() {
-  renderTypeFilters();
-  renderGrid();
-  var searchInput = document.getElementById("dex-search");
-  if (searchInput) {
-    searchInput.addEventListener("input", function(e) { onSearchInput(e.target.value); });
+  /* Init grid+filters only if present on this page */
+  if (document.getElementById("dex-grid")) {
+    renderTypeFilters();
+    renderGrid();
+    var searchInput = document.getElementById("dex-search");
+    if (searchInput) {
+      searchInput.addEventListener("input", function(e) { onSearchInput(e.target.value); });
+    }
   }
-  /* Close modal on backdrop click or Escape */
+  /* Modal is shared across pages — init close handlers if modal exists */
   var modal = document.getElementById("dex-modal");
-  modal.addEventListener("click", function(e) {
-    if (e.target === modal) closeDexDetail();
-  });
-  document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape" && modal.classList.contains("active")) closeDexDetail();
-  });
+  if (modal) {
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) closeDexDetail();
+    });
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape" && modal.classList.contains("active")) closeDexDetail();
+    });
+  }
 });
