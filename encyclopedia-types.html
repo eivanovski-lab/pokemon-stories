@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Какой тип сильнее — Энциклопедия — Покемон-истории</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero-header" style="padding: 40px 20px;">
+        <div class="hero-content">
+            <h1 class="logo-title" style="font-size: clamp(28px, 6vw, 42px);">🎓 Какой тип сильнее</h1>
+            <p class="hero-tagline">Правила боя покемонов</p>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link">Главная</a>
+        <a href="heroes.html" class="nav-link">Герои</a>
+        <a href="games.html" class="nav-link">Игры</a>
+        <a href="encyclopedia.html" class="nav-link active">Энциклопедия</a>
+    </nav>
+
+    <main class="types-page">
+
+        <p class="types-breadcrumb">
+            <a href="encyclopedia.html">Энциклопедия</a> &rsaquo; Какой тип сильнее
+        </p>
+
+        <section class="types-intro">
+            <p>У каждого покемона есть <b>тип</b> — это как его «характер». Кто-то огненный, кто-то водный, кто-то психический. Когда два покемона дерутся, тип решает, чей удар сильнее.</p>
+            <p>Вот главные правила. Если их выучить — будешь побеждать в <a href="games/pokemon-quiz/index.html">Мастере типов</a>! 💪</p>
+        </section>
+
+        <!-- === CLASSIC TRIANGLE === -->
+        <section class="types-section types-triangle-section">
+            <h2 class="types-heading">🌿 Главный треугольник</h2>
+            <p class="types-section-intro">С этого начинают все тренеры. Запомни — и не забудешь никогда.</p>
+            <div class="types-triangle">
+                <div class="triangle-pair">
+                    <div class="t-card" data-type="fire"><span class="t-emoji">🔥</span><span class="t-name">Огонь</span></div>
+                    <div class="t-verb">сжигает</div>
+                    <div class="t-card" data-type="grass"><span class="t-emoji">🌿</span><span class="t-name">Траву</span></div>
+                </div>
+                <div class="triangle-pair">
+                    <div class="t-card" data-type="grass"><span class="t-emoji">🌿</span><span class="t-name">Трава</span></div>
+                    <div class="t-verb">пьёт</div>
+                    <div class="t-card" data-type="water"><span class="t-emoji">💧</span><span class="t-name">Воду</span></div>
+                </div>
+                <div class="triangle-pair">
+                    <div class="t-card" data-type="water"><span class="t-emoji">💧</span><span class="t-name">Вода</span></div>
+                    <div class="t-verb">тушит</div>
+                    <div class="t-card" data-type="fire"><span class="t-emoji">🔥</span><span class="t-name">Огонь</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === WEATHER & EARTH === -->
+        <section class="types-section">
+            <h2 class="types-heading">⚡ Погода и земля</h2>
+            <p class="types-section-intro">Молнии, лёд, камни и почва — силы природы сами по себе.</p>
+            <div class="types-pairs">
+                <div class="tp-row">
+                    <div class="t-card" data-type="electric"><span class="t-emoji">⚡</span><span class="t-name">Электричество</span></div>
+                    <div class="t-verb">бьёт током</div>
+                    <div class="t-card" data-type="water"><span class="t-emoji">💧</span><span class="t-name">Воду</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="electric"><span class="t-emoji">⚡</span><span class="t-name">Электричество</span></div>
+                    <div class="t-verb">сбивает</div>
+                    <div class="t-card" data-type="flying"><span class="t-emoji">🪽</span><span class="t-name">Летающих</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="ground"><span class="t-emoji">🌍</span><span class="t-name">Земля</span></div>
+                    <div class="t-verb">заземляет</div>
+                    <div class="t-card" data-type="electric"><span class="t-emoji">⚡</span><span class="t-name">Электричество</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="ground"><span class="t-emoji">🌍</span><span class="t-name">Земля</span></div>
+                    <div class="t-verb">душит</div>
+                    <div class="t-card" data-type="fire"><span class="t-emoji">🔥</span><span class="t-name">Огонь</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="ice"><span class="t-emoji">❄️</span><span class="t-name">Лёд</span></div>
+                    <div class="t-verb">замораживает</div>
+                    <div class="t-card" data-type="dragon"><span class="t-emoji">🐲</span><span class="t-name">Дракона</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="ice"><span class="t-emoji">❄️</span><span class="t-name">Лёд</span></div>
+                    <div class="t-verb">морозит</div>
+                    <div class="t-card" data-type="grass"><span class="t-emoji">🌿</span><span class="t-name">Траву</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="rock"><span class="t-emoji">🪨</span><span class="t-name">Камень</span></div>
+                    <div class="t-verb">сбивает</div>
+                    <div class="t-card" data-type="flying"><span class="t-emoji">🪽</span><span class="t-name">Летающих</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="rock"><span class="t-emoji">🪨</span><span class="t-name">Камень</span></div>
+                    <div class="t-verb">ломает</div>
+                    <div class="t-card" data-type="bug"><span class="t-emoji">🐛</span><span class="t-name">Насекомых</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === PHYSICAL STRENGTH === -->
+        <section class="types-section">
+            <h2 class="types-heading">👊 Сила и драка</h2>
+            <p class="types-section-intro">Кулаки и мускулы. Кто сильнее кого в обычной драке.</p>
+            <div class="types-pairs">
+                <div class="tp-row">
+                    <div class="t-card" data-type="fighting"><span class="t-emoji">👊</span><span class="t-name">Боец</span></div>
+                    <div class="t-verb">ломает</div>
+                    <div class="t-card" data-type="rock"><span class="t-emoji">🪨</span><span class="t-name">Камень</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="fighting"><span class="t-emoji">👊</span><span class="t-name">Боец</span></div>
+                    <div class="t-verb">одолевает</div>
+                    <div class="t-card" data-type="normal"><span class="t-emoji">⚪</span><span class="t-name">Обычного</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="fighting"><span class="t-emoji">👊</span><span class="t-name">Боец</span></div>
+                    <div class="t-verb">разбивает</div>
+                    <div class="t-card" data-type="ice"><span class="t-emoji">❄️</span><span class="t-name">Лёд</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="flying"><span class="t-emoji">🪽</span><span class="t-name">Летающий</span></div>
+                    <div class="t-verb">клюёт</div>
+                    <div class="t-card" data-type="fighting"><span class="t-emoji">👊</span><span class="t-name">Бойца</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="flying"><span class="t-emoji">🪽</span><span class="t-name">Летающий</span></div>
+                    <div class="t-verb">налетает на</div>
+                    <div class="t-card" data-type="bug"><span class="t-emoji">🐛</span><span class="t-name">Насекомое</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === MAGIC & MIND === -->
+        <section class="types-section">
+            <h2 class="types-heading">🔮 Тайны и магия</h2>
+            <p class="types-section-intro">Мысли, призраки, страх и волшебство. Здесь всё хитрее.</p>
+            <div class="types-pairs">
+                <div class="tp-row">
+                    <div class="t-card" data-type="psychic"><span class="t-emoji">🔮</span><span class="t-name">Психика</span></div>
+                    <div class="t-verb">читает мысли</div>
+                    <div class="t-card" data-type="fighting"><span class="t-emoji">👊</span><span class="t-name">Бойца</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="bug"><span class="t-emoji">🐛</span><span class="t-name">Насекомое</span></div>
+                    <div class="t-verb">кусает</div>
+                    <div class="t-card" data-type="psychic"><span class="t-emoji">🔮</span><span class="t-name">Психику</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="ghost"><span class="t-emoji">👻</span><span class="t-name">Призрак</span></div>
+                    <div class="t-verb">пугает</div>
+                    <div class="t-card" data-type="psychic"><span class="t-emoji">🔮</span><span class="t-name">Психику</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="dark"><span class="t-emoji">🌑</span><span class="t-name">Тьма</span></div>
+                    <div class="t-verb">хитрит против</div>
+                    <div class="t-card" data-type="psychic"><span class="t-emoji">🔮</span><span class="t-name">Психики</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="fairy"><span class="t-emoji">✨</span><span class="t-name">Волшебство</span></div>
+                    <div class="t-verb">завораживает</div>
+                    <div class="t-card" data-type="dragon"><span class="t-emoji">🐲</span><span class="t-name">Дракона</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="fairy"><span class="t-emoji">✨</span><span class="t-name">Волшебство</span></div>
+                    <div class="t-verb">справляется с</div>
+                    <div class="t-card" data-type="fighting"><span class="t-emoji">👊</span><span class="t-name">Бойцом</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="ghost"><span class="t-emoji">👻</span><span class="t-name">Призрак</span></div>
+                    <div class="t-verb">пронзает</div>
+                    <div class="t-card" data-type="ghost"><span class="t-emoji">👻</span><span class="t-name">Призрака</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="dragon"><span class="t-emoji">🐲</span><span class="t-name">Дракон</span></div>
+                    <div class="t-verb">сокрушает</div>
+                    <div class="t-card" data-type="dragon"><span class="t-emoji">🐲</span><span class="t-name">Дракона</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === POISON & METAL === -->
+        <section class="types-section">
+            <h2 class="types-heading">☠️ Яды и металл</h2>
+            <p class="types-section-intro">Химия против магии, и железо против льда.</p>
+            <div class="types-pairs">
+                <div class="tp-row">
+                    <div class="t-card" data-type="poison"><span class="t-emoji">☠️</span><span class="t-name">Яд</span></div>
+                    <div class="t-verb">отравляет</div>
+                    <div class="t-card" data-type="grass"><span class="t-emoji">🌿</span><span class="t-name">Траву</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="poison"><span class="t-emoji">☠️</span><span class="t-name">Яд</span></div>
+                    <div class="t-verb">заражает</div>
+                    <div class="t-card" data-type="fairy"><span class="t-emoji">✨</span><span class="t-name">Волшебство</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="steel"><span class="t-emoji">⚙️</span><span class="t-name">Сталь</span></div>
+                    <div class="t-verb">крошит</div>
+                    <div class="t-card" data-type="ice"><span class="t-emoji">❄️</span><span class="t-name">Лёд</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="steel"><span class="t-emoji">⚙️</span><span class="t-name">Сталь</span></div>
+                    <div class="t-verb">обрабатывает</div>
+                    <div class="t-card" data-type="fairy"><span class="t-emoji">✨</span><span class="t-name">Волшебство</span></div>
+                </div>
+                <div class="tp-row">
+                    <div class="t-card" data-type="steel"><span class="t-emoji">⚙️</span><span class="t-name">Сталь</span></div>
+                    <div class="t-verb">раскалывает</div>
+                    <div class="t-card" data-type="rock"><span class="t-emoji">🪨</span><span class="t-name">Камень</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === SPECIAL RULES === -->
+        <section class="types-section types-special">
+            <h2 class="types-heading">🌟 Особые правила</h2>
+            <p class="types-section-intro">Есть четыре странные ситуации. Удар вообще <b>не работает</b>.</p>
+            <div class="types-special-list">
+                <div class="ts-row">
+                    <span class="ts-icons">⚪ ↔️ 👻</span>
+                    <p><b>Обычный</b> и <b>Призрак</b> не видят друг друга. Удары проходят насквозь — <b>ничья</b>.</p>
+                </div>
+                <div class="ts-row">
+                    <span class="ts-icons">🌍 ✗ 🪽</span>
+                    <p><b>Землетрясение</b> не достанет <b>летающего</b> — он просто в воздухе.</p>
+                </div>
+                <div class="ts-row">
+                    <span class="ts-icons">⚡ ✗ 🌍</span>
+                    <p><b>Молнии</b> не попадают в <b>земляных</b> — они уходят в землю.</p>
+                </div>
+                <div class="ts-row">
+                    <span class="ts-icons">🔮 ✗ 🌑</span>
+                    <p><b>Психика</b> не видит <b>Тьму</b> — тёмные слишком хитрые, их мысли не прочитать.</p>
+                </div>
+                <div class="ts-row">
+                    <span class="ts-icons">🐲 ✗ ✨</span>
+                    <p><b>Драконы</b> не трогают <b>волшебных</b> — волшебство их очаровывает, они не хотят нападать.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- === TIP === -->
+        <section class="types-tip">
+            <h3>💡 Подсказка</h3>
+            <p>У многих покемонов <b>два типа</b> сразу. Лапрас — это и <b>💧 вода</b>, и <b>❄️ лёд</b>. Чаризард — <b>🔥 огонь</b> и <b>🪽 летающий</b>. Поэтому один удар может попасть дважды сильнее (2×) или вообще не попасть. Чтобы выиграть бой — думай про <b>оба</b> типа противника.</p>
+        </section>
+
+        <div class="types-back">
+            <a href="encyclopedia.html" class="types-back-btn">← К энциклопедии</a>
+            <a href="games/pokemon-quiz/index.html" class="types-play-btn">🎯 Играть в «Мастер типов»</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>Покемон-истории: Три тренера &copy; 2026</p>
+        <p class="footer-note">Для самостоятельного чтения &middot; 7–8 лет</p>
+    </footer>
+</body>
+</html>

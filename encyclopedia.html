@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Энциклопедия — Покемон-истории</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero-header" style="padding: 40px 20px;">
+        <div class="hero-content">
+            <h1 class="logo-title" style="font-size: clamp(28px, 6vw, 42px);">Энциклопедия</h1>
+            <p class="hero-tagline">Всё про мир покемонов</p>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link">Главная</a>
+        <a href="heroes.html" class="nav-link">Герои</a>
+        <a href="games.html" class="nav-link">Игры</a>
+        <a href="encyclopedia.html" class="nav-link active">Энциклопедия</a>
+    </nav>
+
+    <main style="max-width: 1000px; margin: 0 auto; padding: 20px;">
+        <p class="encyclopedia-intro">
+            Здесь живут разделы про типы покемонов, их эволюции, про мир и легендарных защитников природы.
+            Выбери, с чего начать!
+        </p>
+
+        <div class="encyclopedia-grid">
+
+            <a href="encyclopedia-types.html" class="enc-card enc-available">
+                <div class="enc-icon" style="background: linear-gradient(135deg, #F08030, #6890F0, #78C850);">
+                    <span>🎓</span>
+                </div>
+                <h3>Какой тип сильнее</h3>
+                <p>Огонь сжигает траву, вода тушит огонь, а трава пьёт воду. И ещё 18 правил, как покемоны побеждают друг друга.</p>
+                <span class="enc-status enc-ready">Готово</span>
+            </a>
+
+            <div class="enc-card enc-soon">
+                <div class="enc-icon" style="background: linear-gradient(135deg, #F5C542, #E85D2F);">
+                    <span>📖</span>
+                </div>
+                <h3>Покедекс: 151 покемон</h3>
+                <p>Карточка на каждого покемона первого поколения: картинка, типы, эволюции, факты.</p>
+                <span class="enc-status enc-pending">Скоро</span>
+            </div>
+
+            <div class="enc-card enc-soon">
+                <div class="enc-icon" style="background: linear-gradient(135deg, #4CAF50, #42A5F5);">
+                    <span>🗺️</span>
+                </div>
+                <h3>Регион Канто</h3>
+                <p>Карта мира первого поколения: города, тропы, лаборатория Дубинского, Лига Покемонов.</p>
+                <span class="enc-status enc-pending">Скоро</span>
+            </div>
+
+            <div class="enc-card enc-soon">
+                <div class="enc-icon" style="background: linear-gradient(135deg, #7B4BC4, #F85888);">
+                    <span>🥚</span>
+                </div>
+                <h3>Эволюции</h3>
+                <p>Деревья развития: Чармандер → Чармелеон → Чаризард. А у Иви — целых 8 разных форм!</p>
+                <span class="enc-status enc-pending">Скоро</span>
+            </div>
+
+            <div class="enc-card enc-soon">
+                <div class="enc-icon" style="background: linear-gradient(135deg, #705898, #F8D030);">
+                    <span>🏆</span>
+                </div>
+                <h3>Легендарные покемоны</h3>
+                <p>Пятёрка героев мифов Канто: Артикуно, Запдос, Молтрес, Мьюту и Мью.</p>
+                <span class="enc-status enc-pending">Скоро</span>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>Покемон-истории: Три тренера &copy; 2026</p>
+        <p class="footer-note">Для самостоятельного чтения &middot; 7–8 лет</p>
+    </footer>
+</body>
+</html>
