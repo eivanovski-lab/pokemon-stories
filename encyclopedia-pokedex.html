@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Покедекс 151 — Энциклопедия — Покемон-истории</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero-header" style="padding: 40px 20px;">
+        <div class="hero-content">
+            <h1 class="logo-title" style="font-size: clamp(28px, 6vw, 42px);">📖 Покедекс: 151 покемон</h1>
+            <p class="hero-tagline">Все покемоны первого поколения</p>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link">Главная</a>
+        <a href="heroes.html" class="nav-link">Герои</a>
+        <a href="games.html" class="nav-link">Игры</a>
+        <a href="encyclopedia.html" class="nav-link active">Энциклопедия</a>
+    </nav>
+
+    <main class="dex-page">
+        <p class="types-breadcrumb">
+            <a href="encyclopedia.html">Энциклопедия</a> &rsaquo; Покедекс 151
+        </p>
+
+        <div class="dex-controls">
+            <input
+                type="text"
+                id="dex-search"
+                class="dex-search"
+                placeholder="🔍 Найти покемона..."
+                autocomplete="off">
+            <div class="dex-counter">Показано: <span id="dex-count">151 из 151</span></div>
+        </div>
+
+        <div id="dex-type-filters" class="dex-type-filters"></div>
+
+        <div id="dex-grid" class="dex-grid"></div>
+
+    </main>
+
+    <!-- DETAIL MODAL -->
+    <div id="dex-modal" class="dex-modal">
+        <div class="dex-modal-inner">
+            <button class="dex-modal-close" onclick="closeDexDetail()">✕</button>
+            <div id="dex-modal-body"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Покемон-истории: Три тренера &copy; 2026</p>
+        <p class="footer-note">Для самостоятельного чтения &middot; 7–8 лет</p>
+    </footer>
+
+    <script src="pokedex.js"></script>
+</body>
+</html>
