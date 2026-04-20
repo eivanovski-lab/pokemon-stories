@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Легендарные покемоны — Энциклопедия — Покемон-истории</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero-header" style="padding: 40px 20px; background: linear-gradient(135deg, #705898 0%, #F8D030 60%, #F08030 100%);">
+        <div class="hero-content">
+            <h1 class="logo-title" style="font-size: clamp(28px, 6vw, 42px);">🏆 Легендарные покемоны</h1>
+            <p class="hero-tagline">Пятёрка героев мифов Канто</p>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link">Главная</a>
+        <a href="heroes.html" class="nav-link">Герои</a>
+        <a href="games.html" class="nav-link">Игры</a>
+        <a href="encyclopedia.html" class="nav-link active">Энциклопедия</a>
+    </nav>
+
+    <main class="legendary-page">
+        <p class="types-breadcrumb">
+            <a href="encyclopedia.html">Энциклопедия</a> &rsaquo; Легендарные покемоны
+        </p>
+
+        <section class="legendary-intro">
+            <h2 class="legendary-intro-title">Что такое легендарный покемон?</h2>
+            <p>Это особая категория. Не обычные «травяные» или «огненные», а отдельный класс, для которого есть специальные правила:</p>
+            <ol>
+                <li><b>Их всего по одному на всю планету.</b> Не стая, не вид. Один Мьюту — он один.</li>
+                <li><b>Их нельзя поймать в траве или купить в магазине.</b> Только если найдёшь по легенде в тайном месте.</li>
+                <li><b>Невероятно сильные.</b> Обычно в 2–3 раза сильнее самых сильных эволюций.</li>
+                <li><b>Уникальные силы.</b> Часто контролируют саму природу: молнии, метели, пламя.</li>
+                <li><b>Не эволюционируют.</b> Они уже финальная форма.</li>
+                <li><b>Связаны с мифами мира покемонов.</b> Ходят слухи, снятся сны, есть древние рисунки на стенах пещер.</li>
+            </ol>
+            <p>В Канто таких покемонов <b>пять</b>. Три птицы и два психических.</p>
+        </section>
+
+        <!-- BIRD TRIO -->
+        <section class="legendary-group">
+            <h2 class="legendary-group-title">🐦 Легендарная тройка птиц</h2>
+            <p class="legendary-group-intro">
+                Три птицы, каждая — повелитель своей стихии. Они охраняют равновесие
+                природы в Канто. Когда одна из них пролетает над местностью — погода
+                резко меняется.
+            </p>
+
+            <article class="legendary-card" data-id="144" onclick="openDexDetail(144)">
+                <div class="legendary-card-inner" style="background: linear-gradient(135deg, #98D8D8 0%, #C0E8E8 60%, #EAF6F6 100%);">
+                    <div class="legendary-img">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/144.png" alt="Артикуно" loading="lazy">
+                    </div>
+                    <div class="legendary-text">
+                        <div class="legendary-meta">
+                            <span class="legendary-number">#144</span>
+                            <span class="dex-badge dex-legendary">🏆 Легендарный</span>
+                        </div>
+                        <h3 class="legendary-name">Артикуно</h3>
+                        <div class="legendary-en">Articuno · ❄️ Лёд / 🪽 Полёт</div>
+                        <p class="legendary-desc">
+                            Легендарная птица-зима. Живёт высоко в горах среди вечных снегов, на
+                            островах Сибирного Льда (Seafoam Islands). Когда Артикуно взмахивает
+                            ледяными крыльями — температура падает, и идёт снег.
+                        </p>
+                        <p class="legendary-fact">
+                            <b>Легенда:</b> встреча с Артикуно — к долгим и ясным зимам. Путешественник,
+                            потерявшийся в метели, может быть спасён этой птицей, если сохранит
+                            доброе сердце.
+                        </p>
+                        <div class="legendary-location">📍 Острова Пены (Seafoam Islands)</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="legendary-card" data-id="145" onclick="openDexDetail(145)">
+                <div class="legendary-card-inner" style="background: linear-gradient(135deg, #F8D030 0%, #FBE87B 60%, #FEF5B6 100%);">
+                    <div class="legendary-img">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/145.png" alt="Запдос" loading="lazy">
+                    </div>
+                    <div class="legendary-text">
+                        <div class="legendary-meta">
+                            <span class="legendary-number">#145</span>
+                            <span class="dex-badge dex-legendary">🏆 Легендарный</span>
+                        </div>
+                        <h3 class="legendary-name">Запдос</h3>
+                        <div class="legendary-en">Zapdos · ⚡ Электричество / 🪽 Полёт</div>
+                        <p class="legendary-desc">
+                            Легендарная птица-гроза. Живёт в грозовых облаках и на высоких
+                            линиях электропередач. Когда Запдос взмахивает крыльями — сверкают
+                            молнии, гремит гром, в деревне может погаснуть свет.
+                        </p>
+                        <p class="legendary-fact">
+                            <b>Легенда:</b> когда Запдос в хорошем настроении — облака вокруг него сияют
+                            жёлтым светом. Можно перепутать с рассветом. Если увидеть его в полёте,
+                            говорят, жизнь следующие 7 лет будет яркой.
+                        </p>
+                        <div class="legendary-location">📍 Заброшенная электростанция</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="legendary-card" data-id="146" onclick="openDexDetail(146)">
+                <div class="legendary-card-inner" style="background: linear-gradient(135deg, #F08030 0%, #F8A858 60%, #FBDCBB 100%);">
+                    <div class="legendary-img">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/146.png" alt="Молтрес" loading="lazy">
+                    </div>
+                    <div class="legendary-text">
+                        <div class="legendary-meta">
+                            <span class="legendary-number">#146</span>
+                            <span class="dex-badge dex-legendary">🏆 Легендарный</span>
+                        </div>
+                        <h3 class="legendary-name">Молтрес</h3>
+                        <div class="legendary-en">Moltres · 🔥 Огонь / 🪽 Полёт</div>
+                        <p class="legendary-desc">
+                            Легендарная птица-огонь. Живёт у вулканов и на раскалённых горах.
+                            Когда Молтрес взмахивает крыльями — поднимается пламя, и деревья
+                            расцветают раньше срока. Говорят, весной он летит на юг — и за ним
+                            приходит весна.
+                        </p>
+                        <p class="legendary-fact">
+                            <b>Легенда:</b> если Молтрес ранится — он окунается в лаву вулкана, чтобы
+                            восстановить силы. Для него кипящая лава — как для нас прохладная ванна.
+                        </p>
+                        <div class="legendary-location">📍 Гора Ембер · Дорога Победы</div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- MEWTWO + MEW -->
+        <section class="legendary-group">
+            <h2 class="legendary-group-title">🔮 Психическая пара</h2>
+            <p class="legendary-group-intro">
+                Мьюту и Мью — две разные истории, связанные одним геном. Мью —
+                древний предок всех покемонов. Мьюту — его искусственная копия,
+                сделанная учёными.
+            </p>
+
+            <article class="legendary-card" data-id="150" onclick="openDexDetail(150)">
+                <div class="legendary-card-inner" style="background: linear-gradient(135deg, #705898 0%, #9888C0 60%, #D1C5E0 100%);">
+                    <div class="legendary-img">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png" alt="Мьюту" loading="lazy">
+                    </div>
+                    <div class="legendary-text">
+                        <div class="legendary-meta">
+                            <span class="legendary-number">#150</span>
+                            <span class="dex-badge dex-legendary">🏆 Легендарный</span>
+                        </div>
+                        <h3 class="legendary-name">Мьюту</h3>
+                        <div class="legendary-en">Mewtwo · 🔮 Психика</div>
+                        <p class="legendary-desc">
+                            Психический покемон, которого <b>создали учёные</b>. Они взяли ДНК
+                            древнего Мью и много лет выращивали Мьюту в лаборатории. Он
+                            получился невероятно сильным и очень умным — умнее большинства людей.
+                            Но сердитым: его создали без разрешения, и он это чувствует.
+                        </p>
+                        <p class="legendary-fact">
+                            <b>Важно:</b> Мьюту — не эволюция Мью. Он клон, научный эксперимент.
+                            В мире покемонов это единственный известный случай, когда покемона
+                            создал человек, а не природа.
+                        </p>
+                        <div class="legendary-location">📍 Секретная Пещера Церулеан · раньше — лаборатория Циннабара</div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="legendary-card" data-id="151" onclick="openDexDetail(151)">
+                <div class="legendary-card-inner" style="background: linear-gradient(135deg, #FF69B4 0%, #FFA4D4 60%, #FDDDED 100%);">
+                    <div class="legendary-img">
+                        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/151.png" alt="Мью" loading="lazy">
+                    </div>
+                    <div class="legendary-text">
+                        <div class="legendary-meta">
+                            <span class="legendary-number">#151</span>
+                            <span class="dex-badge dex-mythical">✨ Мифический</span>
+                        </div>
+                        <h3 class="legendary-name">Мью</h3>
+                        <div class="legendary-en">Mew · 🔮 Психика</div>
+                        <p class="legendary-desc">
+                            Древний <b>предок всех покемонов</b>. Мью живёт где-то в джунглях и очень
+                            редко показывается людям. В ДНК Мью содержится геном любого покемона —
+                            поэтому он может превращаться в кого угодно, как Дитто. Ласковый,
+                            игривый, любопытный, как ребёнок.
+                        </p>
+                        <p class="legendary-fact">
+                            <b>Легенда:</b> учёные считают, что все известные покемоны (больше 1000
+                            видов за все поколения) произошли от Мью за миллионы лет эволюции.
+                            Он — как Ева всего покемоньего мира.
+                        </p>
+                        <div class="legendary-location">📍 Глубокие джунгли · Остров Фаравэй</div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="legendary-outro">
+            <h2 class="kanto-section-title">🎓 А что дальше?</h2>
+            <p>
+                В других поколениях покемонов (Джото, Хоэнн, Синно, Юнова и так далее)
+                есть <b>свои легендарные</b> — и их становится всё больше. Например,
+                Лугия, Хо-Ох, Райку, Энтей, Суикун, Селеби — это уже второе поколение.
+                Если эти истории понравятся, откроем отдельный раздел и про них.
+            </p>
+        </section>
+
+        <div class="types-back">
+            <a href="encyclopedia.html" class="types-back-btn">← К энциклопедии</a>
+            <a href="encyclopedia-kanto.html" class="types-play-btn">🗺️ Регион Канто →</a>
+        </div>
+    </main>
+
+    <!-- Detail modal (shared with pokedex) -->
+    <div id="dex-modal" class="dex-modal">
+        <div class="dex-modal-inner">
+            <button class="dex-modal-close" onclick="closeDexDetail()">✕</button>
+            <div id="dex-modal-body"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Покемон-истории: Три тренера &copy; 2026</p>
+        <p class="footer-note">Для самостоятельного чтения &middot; 7–8 лет</p>
+    </footer>
+
+    <script src="pokedex.js"></script>
+</body>
+</html>
