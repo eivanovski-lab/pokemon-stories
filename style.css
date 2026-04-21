@@ -5,13 +5,29 @@
 .has-js .logo-subtitle,
 .has-js .hero-tagline,
 .has-js .hero-card,
-.has-js .episode-card { opacity: 0; }
+.has-js .episode-card,
+.has-js .hero-full-card,
+.has-js .enc-card,
+.has-js .episode-header .season-label,
+.has-js .episode-header h1,
+.has-js .episode-header .print-btn,
+.has-js .scene-title,
+.has-js .episode-illustration,
+.has-js .lesson-box { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
   .has-js .logo-title,
   .has-js .logo-subtitle,
   .has-js .hero-tagline,
   .has-js .hero-card,
-  .has-js .episode-card { opacity: 1; }
+  .has-js .episode-card,
+  .has-js .hero-full-card,
+  .has-js .enc-card,
+  .has-js .episode-header .season-label,
+  .has-js .episode-header h1,
+  .has-js .episode-header .print-btn,
+  .has-js .scene-title,
+  .has-js .episode-illustration,
+  .has-js .lesson-box { opacity: 1; }
 }
 
 
