@@ -1,18 +1,47 @@
 /* === Pokemon Stories — Children's Website === */
 
+/* Предзагрузка: скрываем анимируемые элементы до старта GSAP (без FOUC) */
+.has-js .logo-title,
+.has-js .logo-subtitle,
+.has-js .hero-tagline,
+.has-js .hero-card,
+.has-js .episode-card { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .has-js .logo-title,
+  .has-js .logo-subtitle,
+  .has-js .hero-tagline,
+  .has-js .hero-card,
+  .has-js .episode-card { opacity: 1; }
+}
+
+
 :root {
-    --cream: #FFFDF7;
-    --brown: #3C2A1A;
-    --orange: #E85D2F;
-    --purple: #7B4BC4;
-    --purple-light: #F3EAFB;
-    --gold: #F5C542;
-    --green: #4CAF50;
-    --blue: #42A5F5;
-    --red: #EF5350;
-    --shadow: rgba(60, 42, 26, 0.1);
-    --radius: 16px;
-    --radius-sm: 10px;
+    /* === Design: 🌱 «Современная детская» — 2026-04-21 === */
+    /* Core palette */
+    --cream: #FFFDF5;
+    --cream-warm: #FFF5E3;
+    --brown: #2B1A0D;
+    --brown-soft: #4A3320;
+    --purple: #8B5FD9;
+    --purple-deep: #6B3FB8;
+    --purple-light: #F3EAFC;
+    --purple-soft: #F3EAFC;
+    --orange: #FF8A65;
+    --coral: #FF8A65;
+    --gold: #FFC94A;
+    --green: #5EC9C0;
+    --teal: #5EC9C0;
+    --blue: #4FC3F7;
+    --red: #FF6B6B;
+    /* Shadows */
+    --shadow: rgba(60, 42, 26, 0.10);
+    --shadow-sm: 0 4px 16px rgba(139, 95, 217, 0.10);
+    --shadow-md: 0 12px 32px rgba(139, 95, 217, 0.14);
+    --shadow-lg: 0 24px 56px rgba(60, 42, 26, 0.14);
+    /* Radii */
+    --radius: 24px;
+    --radius-sm: 12px;
+    --radius-lg: 32px;
 }
 
 * {
@@ -27,14 +56,18 @@ body {
     color: var(--brown);
     line-height: 1.6;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* === HEADER === */
 
 .hero-header {
     position: relative;
-    background: linear-gradient(135deg, var(--purple) 0%, #9B6DD7 40%, var(--orange) 100%);
-    padding: 60px 20px 50px;
+    background:
+        radial-gradient(ellipse 80% 60% at 20% 20%, rgba(255, 201, 74, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 80% at 80% 80%, rgba(255, 138, 101, 0.35) 0%, transparent 50%),
+        linear-gradient(135deg, #B58DE5 0%, #8B5FD9 50%, #FF8A65 100%);
+    padding: 80px 24px 100px;
     text-align: center;
     overflow: hidden;
 }
@@ -42,12 +75,13 @@ body {
 .hero-header::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -20%;
-    width: 140%;
-    height: 200%;
-    background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 60%, rgba(255,255,255,0.08) 0%, transparent 40%);
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 15% 30%, rgba(255,255,255,0.25) 0%, transparent 1.5%),
+        radial-gradient(circle at 85% 70%, rgba(255,255,255,0.20) 0%, transparent 1.2%),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.18) 0%, transparent 1%);
+    background-size: 200px 200px, 250px 250px, 180px 180px;
+    opacity: 0.6;
     pointer-events: none;
 }
 
@@ -57,24 +91,36 @@ body {
 }
 
 .logo-title {
-    font-family: 'Comfortaa', cursive;
-    font-size: clamp(28px, 6vw, 48px);
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: clamp(44px, 9vw, 88px);
+    letter-spacing: -0.02em;
     color: white;
-    text-shadow: 2px 3px 6px rgba(0,0,0,0.2);
-    margin-bottom: 8px;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.15);
+    line-height: 1;
+    margin-bottom: 18px;
 }
 
 .logo-subtitle {
-    font-family: 'Comfortaa', cursive;
-    font-size: clamp(14px, 3vw, 20px);
-    color: rgba(255,255,255,0.9);
-    font-weight: 400;
-    margin-bottom: 12px;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 500;
+    font-size: clamp(16px, 3vw, 22px);
+    color: rgba(255,255,255,0.95);
+    margin-bottom: 14px;
+    letter-spacing: 0.01em;
 }
 
 .hero-tagline {
+    display: inline-block;
     font-size: 14px;
-    color: rgba(255,255,255,0.7);
+    font-weight: 700;
+    color: white;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(10px);
+    padding: 8px 18px;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 /* === NAVIGATION === */
@@ -82,76 +128,106 @@ body {
 .main-nav {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    padding: 12px 20px;
+    gap: 6px;
+    padding: 16px 20px;
     background: white;
-    box-shadow: 0 2px 8px var(--shadow);
+    box-shadow: var(--shadow-sm);
     position: sticky;
     top: 0;
     z-index: 100;
+    margin-top: -40px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
 }
 
 .nav-link {
-    font-family: 'Comfortaa', cursive;
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--brown);
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--brown-soft);
     text-decoration: none;
-    padding: 8px 20px;
-    border-radius: 20px;
-    transition: all 0.2s;
+    padding: 10px 22px;
+    border-radius: 100px;
+    transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
 }
 
 .nav-link:hover, .nav-link.active {
     background: var(--purple-light);
-    color: var(--purple);
+    color: var(--purple-deep);
+    transform: translateY(-1px);
 }
 
 /* === MAIN === */
 
 main {
-    max-width: 1100px;
+    max-width: 1160px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 40px 24px 64px;
 }
 
 .section-title {
-    font-family: 'Comfortaa', cursive;
-    font-size: clamp(22px, 4vw, 32px);
-    color: var(--orange);
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 40px);
     text-align: center;
-    margin: 40px 0 24px;
+    color: var(--brown);
+    margin: 48px 0 40px;
+    letter-spacing: -0.01em;
+}
+.section-title::after {
+    content: '';
+    display: block;
+    width: 56px;
+    height: 5px;
+    background: linear-gradient(90deg, var(--purple), var(--coral));
+    border-radius: 3px;
+    margin: 14px auto 0;
 }
 
 /* === HEROES PREVIEW === */
 
 .heroes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+    margin-bottom: 48px;
 }
 
 .hero-card {
+    position: relative;
     background: white;
     border-radius: var(--radius);
-    padding: 24px 16px;
+    padding: 32px 24px 28px;
     text-align: center;
-    box-shadow: 0 4px 16px var(--shadow);
-    transition: transform 0.2s;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .hero-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
 }
 
 .hero-avatar {
-    width: 120px;
-    height: 120px;
+    width: 148px;
+    height: 148px;
     border-radius: 50%;
-    margin: 0 auto 12px;
+    margin: 0 auto 18px;
     overflow: hidden;
-    border: 4px solid var(--purple-light);
+    border: 4px solid white;
+    box-shadow: 0 8px 24px rgba(139, 95, 217, 0.2);
 }
 
 .hero-avatar img {
@@ -161,88 +237,104 @@ main {
 }
 
 .hero-card h3 {
-    font-family: 'Comfortaa', cursive;
-    font-size: 20px;
-    color: var(--purple);
-    margin-bottom: 4px;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--brown);
+    margin-bottom: 6px;
 }
 
 .hero-role {
-    font-size: 14px;
-    color: var(--orange);
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-weight: 600;
-    margin-bottom: 8px;
+    font-size: 15px;
+    color: var(--purple-deep);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .hero-pokemon {
-    font-size: 12px;
-    color: #888;
+    font-size: 14px;
+    color: var(--brown-soft);
+    line-height: 1.5;
 }
 
-.hero-kristi { border-top: 4px solid var(--purple); }
-.hero-makster { border-top: 4px solid var(--green); }
-.hero-romus { border-top: 4px solid var(--red); }
+.hero-kristi::before { background: linear-gradient(90deg, var(--purple), #B58DE5); }
+.hero-makster::before { background: linear-gradient(90deg, var(--coral), var(--gold)); }
+.hero-romus::before { background: linear-gradient(90deg, var(--teal), var(--blue)); }
+.hero-card.hero-makster .hero-role { color: var(--coral); }
+.hero-card.hero-romus .hero-role { color: var(--teal); }
 
 /* === EPISODES GRID === */
 
 .episodes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 20px;
-    margin-bottom: 60px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+    margin-bottom: 72px;
 }
 
 .episode-card {
+    display: block;
     background: white;
     border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0 4px 16px var(--shadow);
+    box-shadow: var(--shadow-sm);
     text-decoration: none;
     color: var(--brown);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
 }
 
-.episode-card.available:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 24px rgba(123, 75, 196, 0.2);
+.episode-card.available:hover,
+.episode-card:not(.locked):hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--shadow-lg);
 }
 
 .episode-card h3 {
-    font-family: 'Comfortaa', cursive;
-    font-size: 13px;
-    padding: 10px 12px;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 18px 20px 22px;
     line-height: 1.3;
+    color: var(--brown);
 }
 
 .episode-cover {
     position: relative;
-    aspect-ratio: 3/4;
+    aspect-ratio: 4/5;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--purple-light), #E8F5E9);
+    background: linear-gradient(135deg, var(--purple-light), var(--cream-warm));
 }
 
 .episode-cover img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+
+.episode-card:hover .episode-cover img {
+    transform: scale(1.06);
 }
 
 .episode-number {
     position: absolute;
-    top: 8px;
-    left: 8px;
-    background: var(--orange);
-    color: white;
-    font-family: 'Comfortaa', cursive;
+    top: 14px;
+    left: 14px;
+    background: white;
+    color: var(--purple-deep);
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-weight: 700;
-    font-size: 14px;
-    width: 32px;
-    height: 32px;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-sm);
 }
 
 .episode-card.locked {
@@ -284,24 +376,41 @@ main {
 }
 
 .episode-header h1 {
-    font-family: 'Comfortaa', cursive;
-    font-size: clamp(24px, 5vw, 36px);
-    color: var(--orange);
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: clamp(28px, 5vw, 42px);
+    color: var(--brown);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
 }
 
 .episode-header .season-label {
-    font-size: 14px;
-    color: #888;
-    margin-bottom: 8px;
+    font-size: 13px;
+    color: var(--purple-deep);
+    margin-bottom: 10px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .scene-title {
-    font-family: 'Comfortaa', cursive;
-    font-size: 22px;
-    color: var(--orange);
-    margin: 32px 0 16px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--purple-light);
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--purple-deep);
+    margin: 36px 0 18px;
+    padding-bottom: 10px;
+    position: relative;
+    letter-spacing: -0.01em;
+}
+.scene-title::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 48px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--purple), var(--coral));
+    border-radius: 2px;
 }
 
 .episode-text p {
@@ -329,7 +438,7 @@ main {
     border-radius: var(--radius-sm);
     padding: 16px 24px;
     text-align: center;
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-weight: 700;
     margin: 16px auto;
     max-width: 400px;
@@ -343,24 +452,47 @@ main {
 }
 
 .lesson-box {
-    background: var(--purple-light);
-    border: 2px solid var(--purple);
+    background: linear-gradient(135deg, #F7EFFD 0%, #FDF0EA 100%);
+    border: 2px solid rgba(139, 95, 217, 0.2);
     border-radius: var(--radius);
-    padding: 20px 24px;
+    padding: 28px 32px;
     text-align: center;
-    margin: 40px auto;
-    max-width: 500px;
+    margin: 48px auto;
+    max-width: 560px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+.lesson-box::before {
+    content: '✨';
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: var(--shadow-sm);
 }
 
 .lesson-box h3 {
-    font-family: 'Comfortaa', cursive;
-    color: var(--purple);
-    margin-bottom: 8px;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--purple-deep);
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
 }
 
 .lesson-box p {
     font-style: italic;
-    font-size: 16px;
+    font-size: 17px;
+    color: var(--brown-soft);
+    line-height: 1.5;
 }
 
 .episode-nav {
@@ -371,19 +503,23 @@ main {
 }
 
 .episode-nav a {
-    font-family: 'Comfortaa', cursive;
-    font-size: 14px;
-    color: var(--purple);
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--purple-deep);
     text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    background: var(--purple-light);
-    transition: all 0.2s;
+    padding: 12px 24px;
+    border-radius: 100px;
+    background: white;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
 }
 
 .episode-nav a:hover {
     background: var(--purple);
     color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 /* === HEROES PAGE === */
@@ -391,21 +527,27 @@ main {
 .hero-full-card {
     background: white;
     border-radius: var(--radius);
-    padding: 30px;
-    margin-bottom: 24px;
-    box-shadow: 0 4px 16px var(--shadow);
+    padding: 36px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-md);
     display: flex;
-    gap: 24px;
+    gap: 32px;
     align-items: center;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+}
+.hero-full-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
 }
 
 .hero-full-avatar {
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
-    border: 4px solid var(--purple-light);
+    border: 5px solid white;
+    box-shadow: 0 8px 24px rgba(139, 95, 217, 0.2);
 }
 
 .hero-full-avatar img {
@@ -415,27 +557,44 @@ main {
 }
 
 .hero-full-info h2 {
-    font-family: 'Comfortaa', cursive;
-    color: var(--purple);
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--brown);
     margin-bottom: 4px;
+    letter-spacing: -0.01em;
 }
 
 /* === GAMES PAGE === */
 
 .games-placeholder {
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 24px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    max-width: 640px;
+    margin: 40px auto;
 }
 
 .games-placeholder .games-icon {
-    font-size: 80px;
-    margin-bottom: 16px;
+    font-size: 96px;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
 .games-placeholder h2 {
-    font-family: 'Comfortaa', cursive;
-    color: var(--purple);
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 700;
+    font-size: 32px;
+    color: var(--brown);
     margin-bottom: 12px;
+    letter-spacing: -0.01em;
 }
 
 /* === FOOTER === */
@@ -507,23 +666,27 @@ footer {
 .print-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    font-family: 'Comfortaa', cursive;
+    gap: 8px;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
+    font-weight: 600;
     font-size: 13px;
-    color: var(--purple);
-    background: var(--purple-light);
-    border: none;
+    color: var(--purple-deep);
+    background: white;
+    border: 1px solid rgba(139, 95, 217, 0.2);
     padding: 8px 16px;
-    border-radius: 20px;
+    border-radius: 100px;
     cursor: pointer;
-    transition: all 0.2s;
-    float: right;
-    margin-top: -40px;
+    transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: var(--shadow-sm);
+    margin: 16px 0;
 }
 
 .print-btn:hover {
     background: var(--purple);
     color: white;
+    border-color: var(--purple);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 @media print {
@@ -638,7 +801,7 @@ footer {
     color: white;
 }
 .enc-card h3 {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-size: 20px;
     color: var(--purple);
     margin-top: 4px;
@@ -695,7 +858,7 @@ footer {
 
 .types-section { margin-bottom: 36px; }
 .types-heading {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-size: 26px;
     color: var(--purple);
     margin-bottom: 6px;
@@ -758,9 +921,9 @@ footer {
     white-space: nowrap;
 }
 .t-card .t-emoji { font-size: 22px; }
-.t-card .t-name { font-family: 'Comfortaa', cursive; font-weight: 700; }
+.t-card .t-name { font-family: 'Fredoka', 'Comfortaa', cursive; font-weight: 700; }
 .t-verb {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-weight: 700;
     color: var(--brown);
     font-size: 15px;
@@ -831,7 +994,7 @@ footer {
     box-shadow: 0 4px 16px var(--shadow);
 }
 .types-tip h3 {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-size: 20px;
     color: #5a4500;
     margin-bottom: 10px;
@@ -854,7 +1017,7 @@ footer {
     display: inline-block;
     padding: 14px 28px;
     border-radius: var(--radius-sm);
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 16px;
     text-decoration: none;
@@ -1002,7 +1165,7 @@ footer {
     letter-spacing: 0.5px;
 }
 .dex-card-name {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 15px;
     color: var(--brown);
@@ -1168,7 +1331,7 @@ footer {
     letter-spacing: 1px;
 }
 .dex-detail-name {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-size: 32px;
     color: var(--purple);
     margin: 2px 0 2px;
@@ -1196,7 +1359,7 @@ footer {
 }
 
 .dex-section-title {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-size: 18px;
     color: var(--purple);
     margin-bottom: 10px;
@@ -1259,7 +1422,7 @@ footer {
     object-fit: contain;
 }
 .dex-evo-name {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 13px;
     color: var(--brown);
@@ -1345,7 +1508,7 @@ footer {
     margin-bottom: 42px;
 }
 .evo-section-title {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-size: 26px;
     color: var(--purple);
     margin-bottom: 6px;
@@ -1421,7 +1584,7 @@ footer {
     object-fit: contain;
 }
 .evo-mini-name {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 12px;
     color: var(--brown);
@@ -1476,7 +1639,7 @@ footer {
 .kanto-intro p:last-child { margin-bottom: 0; opacity: 0.85; font-size: 14px; font-style: italic; }
 
 .kanto-section-title {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-size: 26px;
     color: var(--purple);
     margin: 28px 0 6px;
@@ -1538,7 +1701,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 18px;
     box-shadow: 0 2px 6px var(--shadow);
@@ -1546,7 +1709,7 @@ footer {
     border: 2px solid var(--brown);
 }
 .city-card h3 {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-size: 22px;
     color: var(--purple);
     margin-bottom: 2px;
@@ -1607,7 +1770,7 @@ footer {
     margin-bottom: 6px;
 }
 .location-card h3 {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-size: 17px;
     color: var(--purple);
     margin-bottom: 6px;
@@ -1638,7 +1801,7 @@ footer {
     margin-bottom: 36px;
 }
 .legendary-intro-title {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     color: var(--purple);
     font-size: 22px;
     margin-bottom: 10px;
@@ -1662,7 +1825,7 @@ footer {
     margin-bottom: 36px;
 }
 .legendary-group-title {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-size: 24px;
     color: var(--purple);
     margin-bottom: 6px;
@@ -1725,13 +1888,13 @@ footer {
     flex-wrap: wrap;
 }
 .legendary-number {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-weight: 700;
     font-size: 13px;
     opacity: 0.6;
 }
 .legendary-name {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Fredoka', 'Comfortaa', cursive;
     font-size: 30px;
     margin-bottom: 2px;
 }
